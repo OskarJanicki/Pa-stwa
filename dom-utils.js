@@ -31,30 +31,32 @@ const createFlagImageElement = (country) => {
 const createCountryItemElement = (country) => {
     const countryElement = document.createElement("li");
 
-
-
-    const countryNameElement = document.createElement("span");
-    countryNameElement.innerText = country.name;
-
     countryElement.appendChild(createFlagImageElement(country));
 
-    countryElement.appendChild(countryNameElement);
+    const infoContainerElement = document.createElement("div");
+    infoContainerElement.classList.add("info-container");
 
-    countryElement.appendChild(
+
+    const countryNameElement = document.createElement("strong");
+    countryNameElement.innerText = country.name;
+    countryElement.classList.add("country-name");
+
+    infoContainerElement.appendChild(countryNameElement);
+
+    infoContainerElement.appendChild(
             createInfoElement("Population:", country.population)
         );
-    countryElement.appendChild(
+    infoContainerElement.appendChild(
             createInfoElement("Region:", country.region)
         );
-    countryElement.appendChild(
+    infoContainerElement.appendChild(
             createInfoElement("Capital:", country.capital)
         );
 
+    countryElement.appendChild(infoContainerElement);
+
     return countryElement;
 }
-
-
-
 
 
 const createListElement = (countries) => {
@@ -65,9 +67,6 @@ const createListElement = (countries) => {
 
     return ListElement;
 }
-
-
-
 
 export const renderCountriesList = (countries) => {
     const rootElement = document.querySelector("#root");
